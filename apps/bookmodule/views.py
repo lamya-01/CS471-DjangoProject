@@ -83,3 +83,73 @@ def complex_query(request):
       return render(request, 'bookmodule/bookList.html', {'books':mybooks}) 
    else: 
       return render(request, 'bookmodule/index.html')
+   
+
+
+from django.db.models import Q
+from .models import Book
+
+def lab8_task1(request):
+    books = Book.objects.filter(Q(price__lte=80))
+    return render(request, 'bookmodule/task1.html', {'books': books})
+
+
+def lab8_task2(request):
+    books = Book.objects.filter(Q(edition__gt=3) & (Q(title__icontains='co') | Q(author__icontains='co')))
+    return render(request, 'bookmodule/lab8_task2.html', {'books': books})
+
+
+def lab8_task3(request):
+    books = Book.objects.filter(~Q(edition__gt=3) & ~(Q(title__icontains='co') | Q(author__icontains='co'))
+    )
+    return render(request, 'bookmodule/lab8_task3.html', {'books': books})
+
+
+def lab8_task4(request):
+    books = Book.objects.all().order_by('title')
+    return render(request, 'bookmodule/lab8_task4.html', {'books': books})
+
+
+from django.db.models import Count, Avg, Sum, Max, Min
+
+def lab8_task5(request):
+    data = Book.objects.aggregate(
+        total_books=Count('id'),
+        total_price=Sum('price'),
+        average_price=Avg('price'),
+        max_price=Max('price'),
+        min_price=Min('price'),
+    )
+    return render(request, 'bookmodule/lab8_task5.html', {'data': data})
+
+
+
+from .models import Address, Student
+# Create cities
+city1 = Address.objects.create(city='Riyadh')
+city2 = Address.objects.create(city='Jeddah')
+city3 = Address.objects.create(city='Tabuk')
+city4 = Address.objects.create(city='Taif')
+city5 = Address.objects.create(city='Qassim')
+
+# Create students
+Student.objects.create(name='Sara', age=21, address=city1)
+Student.objects.create(name='Ali', age=23, address=city2)
+Student.objects.create(name='Lina', age=20, address=city1)
+Student.objects.create(name='Mohammed', age=22, address=city2)
+Student.objects.create(name='Lamya', age=24, address=city5)
+Student.objects.create(name='layan', age=15, address=city2)
+Student.objects.create(name='Fatima', age=26, address=city5)
+Student.objects.create(name='Faras', age=22, address=city1)
+Student.objects.create(name='Ahmad', age=28, address=city1)
+Student.objects.create(name='Naif', age=22, address=city5)
+
+
+
+
+from .models import Student
+from django.db.models import Count
+
+def city_count(request):
+    counts = Student.objects.values('address__city').annotate(total=Count('id'))
+    return render(request, 'bookmodule\city_count.html', {'counts': counts})

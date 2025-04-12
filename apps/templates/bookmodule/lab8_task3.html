@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} lab8 task3 {% endblock title %}
+
+{% block content %}
+
+{% for book in books %}
+
+    <p>{{ book.title }} - {{book.author}} - {{ book.edition }}</p>
+
+{% endfor %}
+
+{% endblock content %}

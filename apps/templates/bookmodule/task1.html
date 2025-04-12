@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} lab8 task 1 {% endblock title %}
+
+{% block content %}
+
+{% for book in books %}
+
+    <p>{{ book.title }} - {{ book.price }}</p>
+
+{% endfor %}
+
+{% endblock content %}

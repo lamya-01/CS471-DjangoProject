@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} Num of student in each city {% endblock title %}
+
+{% block content %}
+
+<ul>
+    {% for item in counts %}
+        <li>{{ item.address__city }}: {{ item.total }} students</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
