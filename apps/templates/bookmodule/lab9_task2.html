@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} lab9 task2 {% endblock title %}
+
+{% block content %}
+
+{% for course in courses %}
+
+    <p>{{ course.title }}: {{ course.student_count }} students</p>
+
+{% endfor %}
+
+{% endblock content %}

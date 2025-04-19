@@ -153,3 +153,79 @@ from django.db.models import Count
 def city_count(request):
     counts = Student.objects.values('address__city').annotate(total=Count('id'))
     return render(request, 'bookmodule\city_count.html', {'counts': counts})
+
+
+
+
+#lab9
+from .models import Course , Student1 ,Department , Card
+from django.db import connection
+
+if Department.objects.count() == 0 and Student1.objects.count() == 0 and Card.objects.count() == 0 and Course.objects.count() == 0:
+   # Create departments
+   cs = Department.objects.create(name='Computer Science')
+   math = Department.objects.create(name='Mathematics')
+   Eng = Department.objects.create(name='English')
+
+   # Create cards
+   card1 = Card.objects.create(card_number=1111)
+   card2 = Card.objects.create(card_number=2222)
+   card3 = Card.objects.create(card_number=3333)
+   card4 = Card.objects.create(card_number=4444)
+   card5 = Card.objects.create(card_number=5555)
+   card6 = Card.objects.create(card_number=6666)
+   card7 = Card.objects.create(card_number=7777)
+   card8 = Card.objects.create(card_number=8888)
+
+   # Create courses
+   course1 = Course.objects.create(title='Web Development', code=101)
+   course2 = Course.objects.create(title='Algorithms', code=102)
+   course3 = Course.objects.create(title='AI', code=103)
+   course4 = Course.objects.create(title='Eng101', code=105)
+   course5 = Course.objects.create(title='Calculus', code=107)
+
+
+   # Create students
+   student1 = Student1.objects.create(name='Lamya', card=card1, department=cs)
+   student2 = Student1.objects.create(name='Fay', card=card2, department=math)
+   student3 = Student1.objects.create(name='Bayan', card=card3, department=Eng)
+   student4 = Student1.objects.create(name='Mona', card=card4, department=cs)
+   student5 = Student1.objects.create(name='Layan', card=card5, department=cs)
+   student6 = Student1.objects.create(name='Raghad', card=card6, department=math)
+   student7 = Student1.objects.create(name='Mariam', card=card7, department=cs)
+   student8 = Student1.objects.create(name='Rana', card=card8, department=Eng)
+
+   # Assign courses (Many-to-Many)
+   student1.course.add(course1, course2)
+   student2.course.add(course5)
+   student3.course.add(course4)
+   student4.course.add(course1,course3,course5)
+   student5.course.add(course2,course3)
+   student6.course.add(course5)
+   student7.course.add(course1,course3,course4)
+   student8.course.add(course4)
+
+
+from django.db.models import Count
+
+def lab9_task1(request):
+    departments = Department.objects.annotate(student_count=Count('student1'))
+    return render(request, 'bookmodule\lab9_task1.html', {'departments': departments})
+
+def lab9_task2(request):
+    courses = Course.objects.annotate(student_count=Count('student1'))
+    return render(request, 'bookmodule\lab9_task2.html', {'courses': courses})
+
+
+from django.db.models import Min
+
+def lab9_task3(request):
+    departments = Department.objects.annotate(oldest_student_id = Min('student1__id'))
+    return render(request, 'bookmodule\lab9_task3.html', {'departments':departments})
+
+
+def lab9_task4(request):
+    departments = Department.objects.annotate(student_count=Count('student1')) \
+        .filter(student_count__gt=2).order_by('-student_count')#highest to lowest
+    return render(request, 'bookmodule\lab9_task4.html', {'departments': departments})
+

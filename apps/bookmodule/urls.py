@@ -27,4 +27,8 @@ path("lab8/task3/", views.lab8_task3, name="book.lab8_task3"),
 path("lab8/task4/", views.lab8_task4, name="book.lab8_task4"),
 path("lab8/task5/", views.lab8_task5, name="book.lab8_task5"),
 path('students/city-count/', views.city_count, name='book.city_count'),
+path('lab9/task1/', views.lab9_task1, name='book.lab9_task1'),
+path('lab9/task2/', views.lab9_task2, name='book.lab9_task2'),
+path('lab9/task3/', views.lab9_task3, name='book.lab9_task3'),
+path('lab9/task4/', views.lab9_task4, name='book.lab9_task4'),
 ] 
