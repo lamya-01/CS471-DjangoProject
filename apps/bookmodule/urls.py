@@ -31,4 +31,13 @@ path('lab9/task1/', views.lab9_task1, name='book.lab9_task1'),
 path('lab9/task2/', views.lab9_task2, name='book.lab9_task2'),
 path('lab9/task3/', views.lab9_task3, name='book.lab9_task3'),
 path('lab9/task4/', views.lab9_task4, name='book.lab9_task4'),
+path('lab10_part1/listbooks/' , views.lab10_part1_listbooks , name ='book.lab10_part1_listbooks'),
+path('lab10_part1/addbook/',views.add_book,name='book.add_book'),
+path('lab10_part1/editbook/<int:id>',views.edit_book,name='book.edit_book'),
+path('lab10_part1/deletebook/<int:id>',views.delete_book,name='book.delete_book'),
+
+path('lab10_part2/listbooks/' , views.lab10_part2_listbooks , name ='book.lab10_part2_listbooks'),
+path('lab10_part2/addbook/',views.lab10_part2_addbook,name='book.lab10_part2_addbook'),
+path('lab10_part2/editbook/<int:id>',views.lab10_part2_editbook,name='book.lab10_part2_editbook'),
+path('lab10_part2/deletebook/<int:id>',views.lab10_part2_deletebook,name='book.lab10_part2_deletebook'),
 ] 

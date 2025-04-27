@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} lab10 part2 editbook {% endblock title %}
+
+{% block content %}
+
+<h1>Edit Book</h1>
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Update Book</button>
+</form>
+<br><br>
+<a href="{% url 'book.lab10_part2_listbooks' %}">Back to List</a>
+
+{% endblock content %}

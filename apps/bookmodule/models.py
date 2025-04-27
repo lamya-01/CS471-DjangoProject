@@ -1,5 +1,6 @@
 from django.db import models 
 
+
 class Book(models.Model): 
   title = models.CharField(max_length = 50) 
   author = models.CharField(max_length = 50) 
@@ -22,7 +23,7 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-    
+
 #lab 9
 class Card(models.Model):
     card_number = models.IntegerField()
@@ -38,7 +39,7 @@ class Course(models.Model):
 class Student1(models.Model):
     name = models.CharField(max_length=100)
     card = models.OneToOneField(Card, on_delete=models.PROTECT)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)#many to one
     course = models.ManyToManyField(Course)
 
 
