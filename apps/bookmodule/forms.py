@@ -38,3 +38,36 @@ class BookForm(forms.ModelForm):
         )
 
     
+from django import forms
+from .models import Student0, Address
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
+
+class Student0Form(forms.ModelForm):
+    class Meta:
+        model = Student0
+        fields = '__all__'
+
+
+from django import forms
+from .models import Student2, Address2
+
+class Address2Form(forms.ModelForm):
+    class Meta:
+        model = Address2
+        fields = '__all__'
+
+class Student2Form(forms.ModelForm):
+    class Meta:
+        model = Student2
+        fields = '__all__'
+
+
+from .models import Book1
+class Book1Form(forms.ModelForm):
+    class Meta:
+        model = Book1
+        fields = '__all__'

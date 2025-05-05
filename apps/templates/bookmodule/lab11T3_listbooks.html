@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} lab11 List Books {% endblock title %}
+
+{% block content %}
+
+<h2>Book List </h2>
+
+<a href="{% url 'book.lab11T3_addBook' %}">Add New Book</a><br><br>
+
+{% block stylesheets %}
+<style>  
+table {
+    border-collapse: collapse;
+    width: 50%;
+  }
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+  }
+table tr:first-child {
+    background-color: #afe6ad;
+  }
+</style>
+{% endblock stylesheets %}
+
+<table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Edition</th>
+            <th>Image</th>
+        </tr>
+
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.edition }}</td>
+            <td>{% if book.coverPage %}
+                <img src="{{ book.coverPage.url }}" width="100" />
+            {% else %}
+                No Image
+            {% endif %}
+                
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No books found.</td></tr>
+        {% endfor %}
+
+</table>
+{% endblock content %}

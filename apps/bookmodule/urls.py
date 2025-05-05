@@ -40,4 +40,17 @@ path('lab10_part2/listbooks/' , views.lab10_part2_listbooks , name ='book.lab10_
 path('lab10_part2/addbook/',views.lab10_part2_addbook,name='book.lab10_part2_addbook'),
 path('lab10_part2/editbook/<int:id>',views.lab10_part2_editbook,name='book.lab10_part2_editbook'),
 path('lab10_part2/deletebook/<int:id>',views.lab10_part2_deletebook,name='book.lab10_part2_deletebook'),
+
+path('lab11/liststudent/', views.lab11_list_students, name='book.lab11_list_students'),
+path('lab11/addstudent/', views.lab11_add_student, name='book.lab11_add_student'),
+path('lab11/updatestudent/<int:student_id>/', views.lab11_update_student, name='book.lab11_update_student'),
+path('lab11/deletestudent/<int:student_id>/', views.lab11_delete_student, name='book.lab11_delete_student'),
+
+path('lab11T2/liststudent/', views.lab11T2_list_students, name='book.lab11T2_list_students'),
+path('lab11T2/addstudent/', views.lab11T2_add_student, name='book.lab11T2_add_student'),
+path('lab11T2/updatestudent/<int:student_id>/', views.lab11T2_update_student, name='book.lab11T2_update_student'),
+path('lab11T2/deletestudent/<int:student_id>/', views.lab11T2_delete_student, name='book.lab11T2_delete_student'),
+
+path('lab11T3/listbook/', views.lab11T3_listbooks, name='book.lab11T3_listbooks'),
+path('lab11T3/addbook/', views.lab11T3_addBook, name='book.lab11T3_addBook'),
 ] 
