@@ -2,4 +2,12 @@
     <a href="{% url 'books.index' %}">Home</a>  
     <a href="{% url 'books.list_books' %}">List Books</a>  
     <a href="{% url 'books.aboutus' %}">About</a>  
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" style="background:none;border:none;color:rgb(222, 11, 11)pointer;">
+            Logout
+        </button>
+    </form>
+    {% endif %}
 </div>

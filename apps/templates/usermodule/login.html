@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} lab12 task2 {% endblock title %}
+
+{% block content %}
+
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    Username: <input type="text" name="username"><br>
+    Password: <input type="password" name="password"><br>
+    <button type="submit">Login</button>
+</form>
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+{% endblock content %}

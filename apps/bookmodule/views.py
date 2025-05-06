@@ -230,8 +230,9 @@ def lab9_task4(request):
         .filter(student_count__gt=2).order_by('-student_count')#highest to lowest
     return render(request, 'bookmodule\lab9_task4.html', {'departments': departments})
 
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def lab10_part1_listbooks(request):
     books = Book.objects.all()
     return render(request, 'bookmodule\lab10_part1_listbooks.html', {'books': books})
